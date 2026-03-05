@@ -77,6 +77,7 @@ h2 {
 /* Form Styles */
 .form-group {
   margin-bottom: 1.5rem;
+  position: relative;
 }
 
 label {
@@ -100,6 +101,39 @@ input {
 input:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  padding-right: 2.5rem; /* Make room for the toggle icon */
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  outline: none;
+  transition: color 0.2s ease;
+}
+
+.password-toggle-btn:hover {
+  color: var(--text-main);
+}
+
+.password-toggle-btn:focus {
+  color: var(--primary-color);
 }
 
 /* Button Styles */
