@@ -22,7 +22,8 @@ const Login = () => {
         setError('');
 
         try {
-            const response = await axios.post('http://localhost:5000/login', { username, password });
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const response = await axios.post(`${apiUrl}/login`, { username, password });
 
             if (response.status === 200) {
                 // Remember username after successful login
@@ -45,6 +46,17 @@ const Login = () => {
                 <p className="subtitle">Please enter your details to sign in</p>
 
                 <form onSubmit={handleLogin}>
+                    <div className="test-credentials">
+                        <p>Demo Account: <strong>admin</strong> / <strong>admin</strong></p>
+                        <button
+                            type="button"
+                            className="demo-btn"
+                            onClick={() => { setUsername('admin'); setPassword('admin'); }}
+                        >
+                            Fill Test Data
+                        </button>
+                    </div>
+
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
                         <input

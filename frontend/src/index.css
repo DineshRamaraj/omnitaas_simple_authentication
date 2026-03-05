@@ -186,6 +186,41 @@ input:focus {
   border: 1px solid #fecaca;
 }
 
+/* Demo Credentials */
+.test-credentials {
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.test-credentials p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.demo-btn {
+  background-color: #e2e8f0;
+  color: #475569;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.demo-btn:hover {
+  background-color: #cbd5e1;
+  color: #1e293b;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {
