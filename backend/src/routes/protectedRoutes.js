@@ -4,7 +4,7 @@ const { verifyToken } = require('../middleware/authMiddleware');
 
 router.get('/welcome', verifyToken, (req, res) => {
     res.json({
-        message: 'Welcome to the protected route!',
+        message: 'You have successfully authenticated against the protected API.',
         user: req.user
     });
 });
