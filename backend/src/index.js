@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
+const protectedRoutes = require('./routes/protectedRoutes');
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/', authRoutes);
+app.use('/api', protectedRoutes);
 
 app.use("/health", (req, res) => {
     res.status(200).send("Server is running");

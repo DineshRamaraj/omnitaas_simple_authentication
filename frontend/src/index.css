@@ -36,7 +36,8 @@ body {
 
 /* Container Styles */
 .login-container,
-.welcome-container {
+.welcome-container,
+.not-found-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +47,8 @@ body {
 }
 
 .login-card,
-.welcome-card {
+.welcome-card,
+.not-found-card {
   background-color: var(--card-bg);
   padding: 2.5rem 2rem;
   border-radius: 1rem;
@@ -56,6 +58,24 @@ body {
   width: 100%;
   max-width: 400px;
   animation: fadeIn 0.5s ease-out forwards;
+}
+
+.not-found-card {
+  max-width: 500px;
+  text-align: center;
+}
+
+.not-found-card p {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.illustration-wrapper {
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Header Styles */
@@ -154,14 +174,39 @@ input:focus {
   margin-top: 1rem;
 }
 
-.login-btn:hover,
+.login-btn:hover:not(:disabled),
 .logout-btn:hover {
   background-color: var(--primary-hover);
 }
 
-.login-btn:active,
+.login-btn:active:not(:disabled),
 .logout-btn:active {
   transform: scale(0.98);
+}
+
+.login-btn:disabled {
+  background-color: #a5b4fc;
+  cursor: not-allowed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .logout-btn {

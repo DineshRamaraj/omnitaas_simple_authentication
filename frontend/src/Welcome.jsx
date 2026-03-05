@@ -3,19 +3,19 @@ import { useNavigate } from 'react-router-dom';
 
 const Welcome = () => {
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
 
-    // Basic protection: if no username in storage, maybe they didn't login properly
+    // Protect route: redirect to login if no token exists
     useEffect(() => {
-        if (!username) {
+        if (!token) {
             navigate('/');
         }
-    }, [username, navigate]);
+    }, [token, navigate]);
 
     const handleLogout = () => {
-        // Clear username if needed, but requirements state: 
-        // "Remember username after successful login for subsequent logins."
-        // We'll just navigate back to login.
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
         navigate('/');
     };
 

@@ -6,28 +6,32 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    // Check if username was previously saved
+    // Check if token was previously saved
     useEffect(() => {
-        const savedUsername = localStorage.getItem('username');
-        if (savedUsername) {
-            setUsername(savedUsername);
+        const token = localStorage.getItem('token');
+        if (token) {
+            // Already logged in
+            navigate('/welcome');
         }
-    }, []);
+    }, [navigate]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
         setError('');
+        setIsLoading(true);
 
         try {
             const apiUrl = import.meta.env.VITE_API_URL;
             const response = await axios.post(`${apiUrl}/login`, { username, password });
 
             if (response.status === 200) {
-                // Remember username after successful login
-                localStorage.setItem('username', username);
+                // Store JWT token
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('username', response.data.username || username);
                 navigate('/welcome');
             }
         } catch (err) {
@@ -36,6 +40,8 @@ const Login = () => {
             } else {
                 setError('An error occurred during login. Please try again.');
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -103,7 +109,13 @@ const Login = () => {
 
                     {error && <div className="error-message">{error}</div>}
 
-                    <button type="submit" className="login-btn">Sign In</button>
+                    <button type="submit" className="login-btn" disabled={isLoading}>
+                        {isLoading ? (
+                            <span className="spinner"></span>
+                        ) : (
+                            "Sign In"
+                        )}
+                    </button>
                 </form>
             </div>
         </div>
